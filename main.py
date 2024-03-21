@@ -10,7 +10,7 @@ def run():
         n = int(prompt_entry.get("1.0", "end-1c"))
         os.system(f"core.py {n}")
     except ValueError:
-        tkinter.messagebox.showerror("Error", "El valor debe ser un número entero.")
+        tkinter.messagebox.showerror("Error", "Input value must be a non negative integer")
         return
     #user_prompt = prompt_entry.get("0.0", tkinter.END)
     #user_prompt += " en modo: " + style_dropdown.get()
@@ -49,7 +49,7 @@ number_label_slider = ctk.CTkLabel(input_frame, text=str(number_slider.get()))
 number_label_slider.grid(row=3,column=2)
 '''
 
-generate_button = ctk.CTkButton(input_frame, text="Iniciar", command=run)
+generate_button = ctk.CTkButton(input_frame, text="Run simulation", command=run)
 generate_button.grid(row=4, column=0, columnspan=2, sticky="news", padx=10, pady=10)
 '''
 #canvas = tkinter.Canvas(root, width=700,height=700)

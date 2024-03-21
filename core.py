@@ -95,7 +95,7 @@ def main():
 			sheep.is_in_place(LEFT, RIGHT, TOP, BOTTOM)
 			signal = True
 			now = datetime.now()
-			print("\n\n=================================================\n\nFecha y hora actual:", now.strftime("%Y-%m-%d %H:%M:%S"))
+			print("\n\n=================================================\n\nDate and actual time:", now.strftime("%Y-%m-%d %H:%M:%S"))
 			tString = tString + now.strftime("%Y-%m-%d %H:%M:%S") + ","
 			last_operation_time = current_time
 
@@ -146,7 +146,7 @@ def main():
 						else:
 							lives[m] = 0
 						if lives[m] == 2:
-							print(f"ADVERTENCIA! Individuo {sheeps[m].iden} lleva mucho tiempo inmóvil")
+							print(f"Warning! Individual {sheeps[m].iden} has been immobile for a long time")
 							sheeps[m].alert = True
 						if lives[m] >= 3:
 							lives[m] = -1
@@ -180,12 +180,12 @@ def main():
 
 		if (signal):
 			tString = tString[:-1]
-			print(tString)
+			#print(tString)
 			escritor_csv.writerow(tString)
-			print("Individuos fuera del área protegida: ", "[",outStr, "]")
+			print("Out of protected area ", "[",outStr, "]")
 			outStr = ""
 			signal = False
-			print("Decesos detectados: ", "[", deathStr, "]")
+			print("Detected deaths: ", "[", deathStr, "]")
 			pos_counter += 1
 
 		if showUI == True:
