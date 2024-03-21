@@ -8,7 +8,7 @@ import os
 def run():
     try:
         n = int(prompt_entry.get("1.0", "end-1c"))
-        os.system(f"main.py {n}")
+        os.system(f"core.py {n}")
     except ValueError:
         tkinter.messagebox.showerror("Error", "El valor debe ser un número entero.")
         return
