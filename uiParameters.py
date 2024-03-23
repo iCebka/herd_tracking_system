@@ -1,6 +1,8 @@
 from ui import *
 from constants import *
 
+#UI Elements
+
 panel = Panel( (WIDTH - 350, 470), 345, 110, (8, 3, 12), alpha=128 )
 panel.color = (0,0,0)
 

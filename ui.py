@@ -1,6 +1,9 @@
 import pygame
 from constants import *
 from tools import *
+
+#Important class to build a GUI with Pygame
+
 class Button:
     def __init__(self, text, position = (WIDTH-230, 600) , w = 100, h= 50, border=10, color = (0, 0, 0), borderColor = (64, 123, 158)):
         self.text = text

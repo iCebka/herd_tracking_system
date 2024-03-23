@@ -21,8 +21,6 @@ Distance = 5
 speed = 0.0005
 FONT = pygame.font.SysFont("times new roman", 12)
 
-cadena1 = "Hola, mundo!"
-
 ruta = f"hola.csv"
 
 
@@ -100,40 +98,6 @@ def main():
 			last_operation_time = current_time
 
 		if (pos_counter == pos_buffer):
-			
-			#print("Resumen de ultimos 10 movimientos:")
-			#for m in range(len(last_pos)):
-				#print(f"Individuo {sheeps[m].iden}: ", end =" ")
-			#	for n in range(len(last_pos[m])):
-			#		pos = last_pos[m][n]
-					#print(pos)
-			#		pygame.draw.circle(WIN, (255,255,255), (pos[0],pos[1]), 6)
-					#print( "(",pos[0],pos[1],")",  end = " ")
-				#print()
-			#	pos_counter = 0
-			'''
-			for m in range(len(last_pos)):
-				dTemp = 0
-				#print(lives[m])
-				for n in range(len(last_pos[m])-1):
-					pos = last_pos[m][n]
-					dTemp +=  (last_pos[m][n][0] - last_pos[m][n+1][0])**2 + (last_pos[m][n][1] - last_pos[m][n+1][1])**2
-				if (dTemp == 0):
-					lives[m] += 1
-				else:
-					if (lives[m] == -1):
-						continue
-					else:
-						lives[m] = 0
-				if (lives[m] == 2):
-					print(f"ADVERTENCIA! Individuo {sheeps[m].iden} lleva mucho tiempo inmóvil")
-				if (lives[m] >= 3):
-					lives[m] = -1
-					#print(f"{sheeps[m].iden} esta muerto")
-					sheeps[m].death()
-					deathStr = deathStr + " " + sheeps[m].iden + " "
-			pos_counter = 0
-			'''
 
 			for m in range(len(last_pos)):
 				dTemp = 0
@@ -160,7 +124,7 @@ def main():
 			sheep.radius = scale
 			if (signal):
 				last_pos[i][pos_counter] = (sheep.position.x,sheep.position.y)
-				#print("* Meto esta posicion (", last_pos[i][pos_counter][0], ",", last_pos[i][pos_counter][1], ") en ", i, ", ", pos_counter )
+				#print("*Record this position (", last_pos[i][pos_counter][0], ",", last_pos[i][pos_counter][1], ") en ", i, ", ", pos_counter )
 				tString = tString + sheep.iden +":("+str(sheep.position.x)+";"+str(sheep.position.y)+")" + ","
 				if (sheep.is_in_place(LEFT, RIGHT, TOP, BOTTOM)):
 					sheep.alert = True

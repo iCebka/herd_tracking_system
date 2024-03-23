@@ -2,6 +2,8 @@ from math import sqrt, atan2
 import colorsys
 NEIGHBORHOOD_RADIUS = 40
 
+#Vector class used for operations in Sheep class
+
 class Vector:
 	def __init__(self, x=0, y=0):
 		self.x = x

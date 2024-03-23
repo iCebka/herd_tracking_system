@@ -9,25 +9,26 @@ from matrix import *
 pygame.init()
 FONT = pygame.font.SysFont("times new roman", 12)
 
+#This class defines an approximation to the behavior of a sheep
 class Sheep:
 	def __init__(self, x, y, iden):
 		
 		self.position = Vector(x,y)
 		self.iden = iden
-		#Velocity
+		
 		vec_x = random.uniform(-1,1)
 		vec_y = random.uniform(-1,1)
 		self.velocity = Vector(vec_x, vec_y)
 		self.velocity.normalize()
 		self.velocity = self.velocity * random.uniform(1.5, 4)
 
-		#Acceleration
 		self.acceleration = Vector()
 		self.color = WHITE
 		self.temp = self.color
 		self.secondaryColor = (70,70,70)
 		self.color_pam1 = 255#random.randint(15,255)
 		self.color_pam2 = 255#random.randint(15,255)
+		self.color_pam3 = 255
 
 		self.max_speed = 2
 		self.max_length = 1
@@ -37,12 +38,11 @@ class Sheep:
 		self.hue = 0
 		self.radius = 400
 		self.alive = True
-
 		self.alert = False
 
+	#To avoid moving out the screen
 	def limits(self, left, right, top, bottom):
 		if self.position.x >= right or self.position.x <= left:
-			#print(self.iden, " esta en (", self.position.x, ",", self.position.y, ") Ejecuta cambio en x")
 			self.velocity.x *= -0.5
 			if self.position.x > right:
 				self.position.x -= 2
@@ -50,22 +50,24 @@ class Sheep:
 				self.position.x += 2
 
 		if self.position.y >= bottom or self.position.y <= top:
-			#print(self.iden, " esta en (", self.position.x, ",", self.position.y, ") Ejecuta cambio en x")
 			self.velocity.y *= -0.5
 			if self.position.y > bottom:
 				self.position.y -= 2
 			elif self.position.y < top:
 				self.position.y += 2
 
+	#To provoke deaths
 	def death(self):
 		self.velocity.reset()
 		self.acceleration.reset()
 		self.color_pam1 = 0
 		self.color_pam2 = 0
+		self.color_pam3 = 0
 		self.alive = False
-		#self.position = self.position
 		self.alert = False
 
+	#To react to the presence of other sheeps
+	#Boids model was supposed, so the main contributions of other sheeps are separation, cohesion and alignment
 	def behaviour(self, herd):
 
 		self.acceleration.reset()
@@ -155,12 +157,14 @@ class Sheep:
 
 		return steering
 
+	#To verify if it is out the protected area
 	def is_in_place(self, left, right, top, bottom):
 		if (self.position.x < left or self.position.x > right or self.position.y > bottom or self.position.y < top):
 			return True
 		else:
 			return False
 
+	#To update position
 	def update(self):
 		if(self.alive):
 			self.position = self.position + self.velocity
@@ -168,6 +172,7 @@ class Sheep:
 			self.velocity.limit(self.max_speed)
 			self.angle = self.velocity.heading() + math.pi/2
 
+	#To draw sheeps
 	def draw(self, screen, distance, etiq, scale):
 		ps = []
 		points = [None for _ in range(3)]
@@ -187,7 +192,7 @@ class Sheep:
 			y = int(projected_2d[1][0] * scale) + self.position.y
 			ps.append((x, y))
 
-		pygame.draw.polygon(screen, (self.color_pam1, self.color_pam2, 0), ps)
+		pygame.draw.polygon(screen, (self.color_pam1, self.color_pam2, self.color_pam3), ps)
 		if (self.alert):
 			pygame.draw.polygon(screen, RED, ps, self.stroke)
 		#else:

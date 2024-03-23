@@ -1,5 +1,7 @@
 import math
 
+#Matrix operations used for drawing sheeps in Sheep class
+
 def matrix_multiplication(a, b):
     columns_a = len(a[0])
     rows_a = len(a)
