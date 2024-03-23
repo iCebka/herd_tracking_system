@@ -14,3 +14,6 @@ Every 5 seconds in the terminal that opens along with the program, sheep that ar
 Pressing the U key opens a small GUI to resize the sheep, make their number labels visible or disappear, and cause deaths. These will be, after a certain time, detected by the program, in the same way as the exits from the protected area.
 
 By closing the simulation window, a new numerical input can be entered to start another simulation. Additionally, a csv file will have been created with records of the sheep's positions every 5 seconds during the simulation.
+
+# About the simulation
+The simulation was based on simplifications regarding the movement of the sheep, in particular, a simple linear movement was assumed. The Boids model was the basis of the simulation. Sheep base their movements on interactions of separation, cohesion and alignment with the rest of the sheep, which makes them form small sub-herds within the entire flock.
