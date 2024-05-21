@@ -5,9 +5,10 @@ import sys
 import csv
 from constants import *
 from tools import Vector
-from sheep import Sheep
+from environment import Sheep
 from uiParameters import *
 from datetime import datetime
+from environment import Wolf
 
 pygame.init()
 
@@ -21,7 +22,7 @@ Distance = 5
 speed = 0.0005
 FONT = pygame.font.SysFont("times new roman", 12)
 
-ruta = f"hola.csv"
+ruta = f"data.csv"
 
 
 def main():
@@ -38,8 +39,10 @@ def main():
 
 	signal = False
 	sheeps = []
+	wolfs = []
 
 	N = int(sys.argv[1])
+	M = 5
 	lives = [0 for _ in range(N)]
 	#for i in range(len(last_pos)):
 	#	for j in range(len(last_pos[i])):
@@ -57,6 +60,10 @@ def main():
 	for i in range(N):
 		j = random.randint(100,999)
 		sheeps.append( Sheep(random.randint(LEFT, RIGHT), random.randint(TOP, BOTTOM), f"{j}ah") )
+
+	for m in range(M):
+		print("creo un lobo")
+		wolfs.append( Wolf(random.randint(LEFT, RIGHT), random.randint(TOP, BOTTOM)) )
 
 	while run:
 		clock.tick(fps)
@@ -142,6 +149,10 @@ def main():
 			sheep.draw(WIN, Distance, etiq, scale)
 			i += 1
 
+		for wolf in wolfs:
+			wolf.radius = scale
+			wolf.draw(WIN, Distance, scale)
+
 		if (signal):
 			tString = tString[:-1]
 			#print(tString)
@@ -150,6 +161,7 @@ def main():
 			outStr = ""
 			signal = False
 			print("Detected deaths: ", "[", deathStr, "]")
+			print("lobo en ", wolfs[0].position)
 			pos_counter += 1
 
 		if showUI == True:
