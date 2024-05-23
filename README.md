@@ -9,14 +9,23 @@ The demo presentation was carried out in Windows, so that the greatest number of
 
 # About the files
 assets: Contains icons accessed from main.py during simulation.
+
 LinuxExecutable: contains the linux executable in the dist folder, it is the file called main.
+
 WindowsExecutable: this is the Windows executable, it is also in dist/main.
+
 constants.py, matrix.py, tools.py, ui.py, uiParameters.py: define important methods and variables used in the simulation, both by the simulating program and by the GUI.
+
 environment.py: Contains the definitions of the Sheep, Wolf and Hole classes.
+
 readingData.py: contains the csv reading routines to generate the images at the end of the main program execution.
+
 recover.csv: csv with example data to load a sheep position from the GUI.
+
 requirements.txt: information about the python libraries used in the program.
+
 Sheeps_Eng_V2.pdf, TechTalk_Slides.pdf: paper and program presentation, respectively.
+
 The 2024-... folders: relevant examples of simulation results
 
 # Important: 
